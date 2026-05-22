@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Blog Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.25), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(168,85,247,0.2), transparent 35%);
+      z-index: -1;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    header {
+      padding: 30px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      background: linear-gradient(to right, #60a5fa, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #cbd5e1;
+      margin-left: 20px;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      max-width: 850px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      color: #cbd5e1;
+      max-width: 700px;
+      line-height: 1.8;
+      font-size: 18px;
+      margin-bottom: 35px;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      padding: 15px 35px;
+      border-radius: 50px;
+      background: linear-gradient(to right, #3b82f6, #8b5cf6);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      box-shadow: 0 10px 30px rgba(59,130,246,0.3);
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(139,92,246,0.4);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #cbd5e1;
+      margin-bottom: 50px;
+    }
+
+    .posts {
+      padding: 40px 0 80px;
+    }
+
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 25px;
+      border-radius: 22px;
+      backdrop-filter: blur(12px);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(96,165,250,0.5);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(59,130,246,0.15);
+      color: #93c5fd;
+      padding: 8px 14px;
+      border-radius: 50px;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .card p {
+      color: #cbd5e1;
+      line-height: 1.7;
+      margin-bottom: 25px;
+      font-size: 15px;
+    }
+
+    .read-btn {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.3s;
+    }
+
+    .read-btn:hover {
+      gap: 12px;
+      color: #93c5fd;
+    }
+
+    .about {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .about-box {
+      max-width: 900px;
+      margin: auto;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 45px;
+      border-radius: 25px;
+      line-height: 1.9;
+      color: #cbd5e1;
+      font-size: 17px;
+    }
+
+    footer {
+      padding: 35px 0;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    @media(max-width: 768px) {
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .section-title {
+        font-size: 30px;
+      }
+
+      .about-box {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="logo">MovieBlog Hub</div>
+
+      <nav>
+        <a href="#posts">Posts</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>Discover Amazing Movie & Streaming Articles</h1>
+
+      <p>
+        A clean and modern one page website where you can share links to your blog posts, movie articles, streaming guides, entertainment news, and more.
+      </p>
+
+      <a href="#posts" class="hero-btn">Explore Posts</a>
+    </section>
+
+    <section class="posts" id="posts">
+      <h2 class="section-title">Latest Blog Posts</h2>
+      <p class="section-subtitle">Replace these demo links with your own blog post URLs.</p>
+
+      <div class="post-grid">
+
+        <div class="card">
+          <span class="tag">Streaming</span>
+          <h3>How Online Movie Streaming is Changing Entertainment</h3>
+          <p>
+            Learn how streaming platforms are transforming the movie industry and changing the way audiences watch films worldwide.
+          </p>
+
+          <a href="https://example.com" target="_blank" class="read-btn">
+            Read Article →
+          </a>
+        </div>
+
+        <div class="card">
+          <span class="tag">Movie Tips</span>
+          <h3>Best Time to Watch Movies for Relaxation</h3>
+          <p>
+            Explore the perfect time and environment for enjoying movies and reducing stress after a long day.
+          </p>
+
+          <a href="https://example.com" target="_blank" class="read-btn">
+            Read Article →
+          </a>
+        </div>
+
+        <div class="card">
+          <span class="tag">Security</span>
+          <h3>How to Watch Movies Online Safely</h3>
+          <p>
+            Important internet safety tips for movie lovers who use online streaming websites regularly.
+          </p>
+
+          <a href="https://example.com" target="_blank" class="read-btn">
+            Read Article →
+          </a>
+        </div>
+
+        <div class="card">
+          <span class="tag">Copyright</span>
+          <h3>Why Copyright Laws Matter in the Movie Industry</h3>
+          <p>
+            Understand the importance of copyright protection and how it supports filmmakers and creators.
+          </p>
+
+          <a href="https://example.com" target="_blank" class="read-btn">
+            Read Article →
+          </a>
+        </div>
+
+        <div class="card">
+          <span class="tag">Entertainment</span>
+          <h3>Top Movie Genres Loved by Audiences Worldwide</h3>
+          <p>
+            From action to sci-fi, discover the movie genres that continue to dominate global entertainment.
+          </p>
+
+          <a href="https://example.com" target="_blank" class="read-btn">
+            Read Article →
+          </a>
+        </div>
+
+        <div class="card">
+          <span class="tag">Technology</span>
+          <h3>The Future of Digital Streaming Platforms</h3>
+          <p>
+            Explore upcoming trends, AI recommendations, and the future evolution of movie streaming services.
+          </p>
+
+          <a href="https://example.com" target="_blank" class="read-btn">
+            Read Article →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <h2 class="section-title">About This Website</h2>
+
+      <div class="about-box">
+        This is a modern single page blog hub designed for sharing article links from different blogging platforms. You can easily edit the post titles, descriptions, and URLs to match your own content. The design is lightweight, mobile responsive, and perfect for personal movie blogs, entertainment websites, or streaming related content.
+      </div>
+    </section>
+
+    <footer id="contact">
+      © 2026 MovieBlog Hub — Designed for sharing blog posts beautifully.
+    </footer>
+  </div>
+
+</body>
+</html>
